@@ -1,19 +1,15 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import {getMyGates} from '@/services/getGates'
+import HurryUp from '@/app/home/components/HurryUp'
+import MyGates from '@/app/home/components/MyGates'
 
-export default function Home() {
+export default async function Home() {
+	const gates = await getMyGates()
 	return (
 		<main className='home'>
 			<div className='container'>
 				<div className='box'>
 					<h6>RaGate's Workspace</h6>
-					<div className='createBox'>
-						<Image src='/rainbow.svg' alt='rainbow' width={200} height={118} />
-						<p>Hurry up and open the gates, we've been waiting!</p>
-						<Link href='/edit' className='button'>
-							Create RaGate
-						</Link>
-					</div>
+					{gates ? <MyGates gates={gates} /> : <HurryUp />}
 				</div>
 			</div>
 		</main>
