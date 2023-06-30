@@ -1,17 +1,11 @@
 import {NextResponse} from 'next/server'
-import {gates} from '@/app/api/edit/gates'
-import {MongoClient, ServerApiVersion, ObjectId} from 'mongodb'
+import {MongoClient} from 'mongodb'
+const {ObjectId} = require('mongodb')
 
-const uri = 'mongodb+srv://mikhail19bozhko:q8YqMAQhqqFfEbKO@cluster0.6qoycbj.mongodb.net/?retryWrites=true&w=majority'
+const uri = 'mongodb://localhost:27017'
 const dbName = 'ragate'
 const collectionName = 'gates'
-const client = new MongoClient(uri, {
-	serverApi: {
-		version: ServerApiVersion.v1,
-		strict: true,
-		deprecationErrors: true
-	}
-})
+const client = new MongoClient(uri)
 
 export async function GET(req: Request, {params}: {params: {id: string}}) {
 	let response
@@ -20,7 +14,25 @@ export async function GET(req: Request, {params}: {params: {id: string}}) {
 		await client.connect()
 		const db = client.db(dbName)
 		const collection = db.collection(collectionName)
+		// @ts-ignore
 		response = await collection.findOne({_id: new ObjectId(id)})
+	} finally {
+		await client.close()
+	}
+
+	return NextResponse.json(response)
+}
+
+export async function POST(req: Request, {params}: {params: {id: string}}) {
+	const body = await req.json()
+	const {id} = params
+	let response
+	try {
+		await client.connect()
+		const db = client.db(dbName)
+		const collection = db.collection(collectionName)
+		// @ts-ignore
+		response = await collection.findOneAndUpdate({_id: new ObjectId(id)}, {$set: body})
 	} finally {
 		await client.close()
 	}

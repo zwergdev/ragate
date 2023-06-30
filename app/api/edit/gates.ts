@@ -1,3 +1,5 @@
+import {ObjectId} from 'bson'
+
 export type Code = {
 	value: string
 	attempts: number
@@ -18,7 +20,7 @@ export type Bio = {
 }
 
 export type Gate = {
-	_id: number
+	_id?: ObjectId
 	bio: Bio
 	codes: Code[]
 	values: Value[]
@@ -26,7 +28,6 @@ export type Gate = {
 
 export const gates: Gate[] = [
 	{
-		_id: 1,
 		bio: {
 			title: 'Untitled Gate',
 			description: 'Gate description',
@@ -43,7 +44,6 @@ export const gates: Gate[] = [
 		values: [{value: 'Twitter'}, {value: 'Discord ID'}, {value: 'Wallet'}]
 	},
 	{
-		_id: 2,
 		bio: {
 			title: 'New Gate',
 			description:
@@ -61,3 +61,20 @@ export const gates: Gate[] = [
 		values: [{value: 'Name'}, {value: 'Surname'}, {value: 'E-Mail'}]
 	}
 ]
+
+export const gateTemplate: Gate = {
+	bio: {
+		title: 'Untitled Gate',
+		description: 'Gate description',
+		codePlaceholder: "Code's placeholder",
+		submitButton: 'Submit button',
+		byeBye: 'Bye-bye message'
+	},
+	codes: [
+		{value: 'Code #1', attempts: 10},
+		{value: 'Code #2', attempts: 50},
+		{value: 'Code #3', attempts: 100},
+		{value: 'Code #4', attempts: 400}
+	],
+	values: [{value: 'Twitter'}, {value: 'Discord ID'}, {value: 'Wallet'}]
+}

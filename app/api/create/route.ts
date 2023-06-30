@@ -1,24 +1,20 @@
 import {NextResponse} from 'next/server'
-import {MongoClient, ServerApiVersion} from 'mongodb'
+import {MongoClient} from 'mongodb'
+import {gateTemplate} from '@/app/api/edit/gates'
 
 const uri = 'mongodb://localhost:27017'
 const dbName = 'ragate'
 const collectionName = 'gates'
-const client = new MongoClient(uri, {
-	serverApi: {
-		version: ServerApiVersion.v1,
-		strict: true,
-		deprecationErrors: true
-	}
-})
+const client = new MongoClient(uri)
 
 export async function GET() {
 	let response
+
 	try {
 		await client.connect()
 		const db = client.db(dbName)
 		const collection = db.collection(collectionName)
-		response = await collection.find({}).toArray()
+		response = await collection.insertOne(gateTemplate)
 	} finally {
 		await client.close()
 	}

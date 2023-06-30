@@ -1,21 +1,19 @@
-import CodesEdit from '@/app/edit/components/CodesEdit'
-import GateEdit from '@/app/edit/components/GateEdit'
-import ValuesEdit from '@/app/edit/components/ValuesEdit'
-import {getGate} from '@/services/getGates'
+'use client'
+import {store} from '@/app/redux/store'
+import {Provider} from 'react-redux'
+import Gate from '@/app/edit/[id]/Gate'
 
 type Props = {
 	params: {id: string}
 }
 
-export default async function Edit({params: {id}}: Props) {
-	const gate = await getGate(id)
-
+export default function Edit({params: {id}}: Props) {
 	return (
 		<main className='edit'>
 			<div className='container'>
-				<CodesEdit codes={gate.codes} />
-				<GateEdit bio={gate.bio} />
-				<ValuesEdit values={gate.values} />
+				<Provider store={store}>
+					<Gate id={id} />
+				</Provider>
 			</div>
 		</main>
 	)

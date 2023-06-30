@@ -1,30 +1,36 @@
 'use client'
-import {ChangeEvent, useState} from 'react'
+import {ChangeEvent} from 'react'
 import {Value} from '@/app/api/edit/gates'
+import {useSelector} from 'react-redux'
+import {setValues, valuesSelector} from '@/app/redux/gateSlice'
+import {useAppDispatch} from '@/app/redux/store'
 
 //const values: Value[] = [{value: 'Twitter'}, {value: 'Discord ID'}, {value: 'Wallet'}]
 
-export default function ValuesEdit({values}: {values: Value[]}) {
-	const [gateValues, setGateValues] = useState(values)
+export default function ValuesEdit() {
+	const dispatch = useAppDispatch()
+	const values = useSelector(valuesSelector)
 
 	const handleInputChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
 		const {value} = event.target
-		setGateValues(prevValues => prevValues.map((item, idx: number) => (idx === index ? {...item, value} : item)))
+		const updatedValues = values.map((item, idx) => (idx === index ? {...item, value} : item))
+		dispatch(setValues(updatedValues))
 	}
 
 	const handleDelete = (index: number) => {
-		setGateValues(prevValues => prevValues.filter((_, idx) => idx !== index))
+		const updatedValues = values.filter((_, idx) => idx !== index)
+		dispatch(setValues(updatedValues))
 	}
-
 	const handleAdd = () => {
-		setGateValues(prevValues => [...prevValues, {value: 'Value'}])
+		const updatedValues = [...values, {value: 'Value'}]
+		dispatch(setValues(updatedValues))
 	}
 
 	return (
 		<div className='editMyValuesBox'>
 			<h5>Gate values</h5>
 			<ul>
-				{gateValues.map((obj: Value, idx: number) => (
+				{values.map((obj: Value, idx: number) => (
 					<li key={idx}>
 						<input type='text' value={obj.value} className='button' onChange={event => handleInputChange(event, idx)} />
 						<button className='delete' onClick={() => handleDelete(idx)}>

@@ -1,6 +1,7 @@
 import {Gate} from '@/app/api/edit/gates'
 import Image from 'next/image'
 import Link from 'next/link'
+import CreateGateBox from '@/app/home/components/CreateGateBox'
 
 export default function MyGates({gates}: {gates: Gate[]}) {
 	return (
@@ -22,9 +23,7 @@ export default function MyGates({gates}: {gates: Gate[]}) {
 					</div>
 				</Link>
 			))}
-			<article className='gate'>
-				<span>+</span>
-			</article>
+			<CreateGateBox />
 		</div>
 	)
 }

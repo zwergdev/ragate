@@ -1,6 +1,9 @@
 'use client'
-import {ChangeEvent, useState} from 'react'
+import {ChangeEvent} from 'react'
 import {Code} from '@/app/api/edit/gates'
+import {useSelector} from 'react-redux'
+import {codesSelector, setCodes} from '@/app/redux/gateSlice'
+import {useAppDispatch} from '@/app/redux/store'
 
 // const codes: Code[] = [
 // 	{value: 'Code #1', attempts: 10},
@@ -9,29 +12,31 @@ import {Code} from '@/app/api/edit/gates'
 // 	{value: 'Code #4', attempts: 400}
 // ]
 
-export default function CodesEdit({codes}: {codes: Code[]}) {
-	const [gateCodes, setGateCodes] = useState(codes)
+export default function CodesEdit() {
+	const dispatch = useAppDispatch()
+	const codes = useSelector(codesSelector)
 
 	const handleInputChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
 		const {name, value} = event.target
-		const updatedGateCodes = [...gateCodes]
-		updatedGateCodes[index][name] = value
-		setGateCodes(updatedGateCodes)
+		const updatedGateCodes = [...codes]
+		updatedGateCodes[index] = {...updatedGateCodes[index], [name]: value}
+		dispatch(setCodes(updatedGateCodes))
 	}
 
 	const handleDelete = (index: number) => {
-		setGateCodes(prevCodes => prevCodes.filter((_, idx) => idx !== index))
+		const updatedCodes = codes.filter((_, idx) => idx !== index)
+		dispatch(setCodes(updatedCodes))
 	}
-
 	const handleAdd = () => {
-		setGateCodes(prevCodes => [...prevCodes, {value: 'Code', attempts: 10}])
+		const updatedCodes = [...codes, {value: 'Code', attempts: 10}]
+		dispatch(setCodes(updatedCodes))
 	}
 
 	return (
 		<div className='editMyCodesBox'>
 			<h5>Gate codes</h5>
 			<ul>
-				{gateCodes.map((obj: Code, idx: number) => (
+				{codes.map((obj: Code, idx: number) => (
 					<li key={idx}>
 						<input
 							type='text'

@@ -1,7 +1,10 @@
 'use client'
 import Image from 'next/image'
-import {ChangeEventHandler, useState} from 'react'
-import {Bio} from '@/app/api/edit/gates'
+import {ChangeEventHandler} from 'react'
+import {useSelector} from 'react-redux'
+import {bioSelector, formSelector, setBio} from '@/app/redux/gateSlice'
+import {useAppDispatch} from '@/app/redux/store'
+import {saveGate} from '@/services/getGates'
 
 // const gate = {
 // 	title: 'Untitled Gate',
@@ -11,45 +14,51 @@ import {Bio} from '@/app/api/edit/gates'
 // 	byeBye: 'Bye-bye message'
 // }
 
-export default function GateEdit({bio}: {bio: Bio}) {
-	const [gateValues, setGateValues] = useState(bio)
+export default function GateEdit() {
+	const dispatch = useAppDispatch()
+	const bio = useSelector(bioSelector)
+	const form = useSelector(formSelector)
 
 	const handleInputChange: ChangeEventHandler<HTMLInputElement> = event => {
 		const {name, value} = event.target
-		setGateValues(prevValues => ({...prevValues, [name]: value}))
+		const updatedBio = {...bio, [name]: value}
+		dispatch(setBio(updatedBio))
+	}
+	const handleSaveGate = async () => {
+		const newGate = {...form}
+		delete newGate._id
+		// @ts-ignore
+		const response = await saveGate(form._id, newGate)
+		if (response.ok) {
+			alert('Saved')
+		}
 	}
 
 	return (
 		<div className='editMyGateBox'>
 			<Image src='/skull.jpg' alt="gate's picture" width={200} height={200} />
 			<div className='gateBio'>
-				<input
-					type='text'
-					name='title'
-					value={gateValues.title}
-					className='titleInput'
-					onChange={e => handleInputChange(e)}
-				/>
+				<input type='text' name='title' value={bio.title} className='titleInput' onChange={e => handleInputChange(e)} />
 				<input
 					type='text'
 					name='description'
-					value={gateValues.description}
+					value={bio.description}
 					className='descriptionInput'
 					onChange={e => handleInputChange(e)}
 				/>
 				<input
 					type='text'
 					name='codePlaceholder'
-					value={gateValues.codePlaceholder}
+					value={bio.codePlaceholder}
 					className='codePlaceholder button'
 					onChange={e => handleInputChange(e)}
 				/>
 				<div className='submitButtonBox'>
-					<button className='submitButton button'>{gateValues.submitButton}</button>
+					<button className='submitButton button'>{bio.submitButton}</button>
 					<input
 						type='text'
 						name='submitButton'
-						value={gateValues.submitButton}
+						value={bio.submitButton}
 						className='submitButtonPlaceholder'
 						onChange={e => handleInputChange(e)}
 					/>
@@ -57,13 +66,15 @@ export default function GateEdit({bio}: {bio: Bio}) {
 				<input
 					type='text'
 					name='byeBye'
-					value={gateValues.byeBye}
+					value={bio.byeBye}
 					className='descriptionInput'
 					onChange={e => handleInputChange(e)}
 				/>
 			</div>
 			<div className='saveBox'>
-				<button className='button save'>Save</button>
+				<button className='button save' onClick={handleSaveGate}>
+					Save
+				</button>
 			</div>
 		</div>
 	)
