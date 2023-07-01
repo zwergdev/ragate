@@ -1,25 +1,15 @@
-'use client'
 import Image from 'next/image'
-import {ChangeEventHandler} from 'react'
 import {useSelector} from 'react-redux'
 import {bioSelector, formSelector, setBio} from '@/app/redux/gateSlice'
 import {useAppDispatch} from '@/app/redux/store'
 import {saveGate} from '@/services/getGates'
-
-// const gate = {
-// 	title: 'Untitled Gate',
-// 	description: 'Gate description',
-// 	codePlaceholder: "Code's placeholder",
-// 	submitButton: 'Submit button',
-// 	byeBye: 'Bye-bye message'
-// }
 
 export default function GateEdit() {
 	const dispatch = useAppDispatch()
 	const bio = useSelector(bioSelector)
 	const form = useSelector(formSelector)
 
-	const handleInputChange: ChangeEventHandler<HTMLInputElement> = event => {
+	const handleInputChange: React.ChangeEventHandler<HTMLInputElement> = event => {
 		const {name, value} = event.target
 		const updatedBio = {...bio, [name]: value}
 		dispatch(setBio(updatedBio))
@@ -27,7 +17,6 @@ export default function GateEdit() {
 	const handleSaveGate = async () => {
 		const newGate = {...form}
 		delete newGate._id
-		// @ts-ignore
 		const response = await saveGate(form._id, newGate)
 		if (response.ok) {
 			alert('Saved')

@@ -1,16 +1,5 @@
 import {NextResponse} from 'next/server'
-import {MongoClient, ServerApiVersion} from 'mongodb'
-
-const uri = 'mongodb://localhost:27017'
-const dbName = 'ragate'
-const collectionName = 'gates'
-const client = new MongoClient(uri, {
-	serverApi: {
-		version: ServerApiVersion.v1,
-		strict: true,
-		deprecationErrors: true
-	}
-})
+import {client, collectionName, dbName} from '@/services/DB'
 
 export async function GET() {
 	let response

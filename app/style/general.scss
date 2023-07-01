@@ -531,3 +531,59 @@ header.edit{
   }
 }
 // <-- EDIT -->
+
+// <-- PUBLIC GATE -->
+.publicGate{
+  padding: 100px 0 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .publicImage{
+    border-radius: 25px;
+    border: 1px solid rgba(128, 128, 128, .5);
+    margin-bottom: 40px;
+  }
+  h5{
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  p{
+    text-align: center;
+    margin-bottom: 20px;
+    opacity: .7;
+  }
+  .inputBox{
+    position: relative;
+    margin-bottom: 20px;
+    &:focus-within{
+      label{
+        display: none;
+      }
+    }
+    .button{
+      cursor: text;
+    }
+    label{
+      cursor: text;
+      position: absolute;
+      bottom: 11px;
+      left: 12px;
+      color: #93938e;
+      display: flex;
+      font-weight: 600;
+      &.d_none{
+        display: none;
+      }
+    }
+  }
+  .submitButton{
+    min-width: 40px;
+    height: 38px;
+    margin: auto;
+  }
+  .formPage{
+    padding-top: 150px;
+  }
+}
+// <-- PUBLIC GATE -->

@@ -1,11 +1,6 @@
 import {NextResponse} from 'next/server'
-import {MongoClient} from 'mongodb'
 import {gateTemplate} from '@/app/api/edit/gates'
-
-const uri = 'mongodb://localhost:27017'
-const dbName = 'ragate'
-const collectionName = 'gates'
-const client = new MongoClient(uri)
+import {client, dbName, collectionName} from '@/services/DB'
 
 export async function GET() {
 	let response

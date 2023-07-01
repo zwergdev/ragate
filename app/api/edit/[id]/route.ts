@@ -1,11 +1,6 @@
 import {NextResponse} from 'next/server'
-import {MongoClient} from 'mongodb'
 const {ObjectId} = require('mongodb')
-
-const uri = 'mongodb://localhost:27017'
-const dbName = 'ragate'
-const collectionName = 'gates'
-const client = new MongoClient(uri)
+import {client, dbName, collectionName} from '@/services/DB'
 
 export async function GET(req: Request, {params}: {params: {id: string}}) {
 	let response
@@ -14,7 +9,6 @@ export async function GET(req: Request, {params}: {params: {id: string}}) {
 		await client.connect()
 		const db = client.db(dbName)
 		const collection = db.collection(collectionName)
-		// @ts-ignore
 		response = await collection.findOne({_id: new ObjectId(id)})
 	} finally {
 		await client.close()
@@ -31,7 +25,6 @@ export async function POST(req: Request, {params}: {params: {id: string}}) {
 		await client.connect()
 		const db = client.db(dbName)
 		const collection = db.collection(collectionName)
-		// @ts-ignore
 		response = await collection.findOneAndUpdate({_id: new ObjectId(id)}, {$set: body})
 	} finally {
 		await client.close()

@@ -1,23 +1,18 @@
-'use client'
-import {ChangeEvent} from 'react'
 import {Code} from '@/app/api/edit/gates'
 import {useSelector} from 'react-redux'
 import {codesSelector, setCodes} from '@/app/redux/gateSlice'
 import {useAppDispatch} from '@/app/redux/store'
 
-// const codes: Code[] = [
-// 	{value: 'Code #1', attempts: 10},
-// 	{value: 'Code #2', attempts: 50},
-// 	{value: 'Code #3', attempts: 100},
-// 	{value: 'Code #4', attempts: 400}
-// ]
-
 export default function CodesEdit() {
 	const dispatch = useAppDispatch()
 	const codes = useSelector(codesSelector)
 
-	const handleInputChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
-		const {name, value} = event.target
+	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+		let {name, value} = event.target
+		if (name === 'attempts') {
+			// @ts-ignore
+			value = Number(value)
+		}
 		const updatedGateCodes = [...codes]
 		updatedGateCodes[index] = {...updatedGateCodes[index], [name]: value}
 		dispatch(setCodes(updatedGateCodes))

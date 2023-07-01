@@ -1,17 +1,13 @@
-'use client'
-import {ChangeEvent} from 'react'
 import {Value} from '@/app/api/edit/gates'
 import {useSelector} from 'react-redux'
 import {setValues, valuesSelector} from '@/app/redux/gateSlice'
 import {useAppDispatch} from '@/app/redux/store'
 
-//const values: Value[] = [{value: 'Twitter'}, {value: 'Discord ID'}, {value: 'Wallet'}]
-
 export default function ValuesEdit() {
 	const dispatch = useAppDispatch()
 	const values = useSelector(valuesSelector)
 
-	const handleInputChange = (event: ChangeEvent<HTMLInputElement>, index: number) => {
+	const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
 		const {value} = event.target
 		const updatedValues = values.map((item, idx) => (idx === index ? {...item, value} : item))
 		dispatch(setValues(updatedValues))
