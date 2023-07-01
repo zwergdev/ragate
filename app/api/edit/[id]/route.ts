@@ -18,14 +18,14 @@ export async function GET(req: Request, {params}: {params: {id: string}}) {
 }
 
 export async function POST(req: Request, {params}: {params: {id: string}}) {
-	const body = await req.json()
+	const newGate = await req.json()
 	const {id} = params
 	let response
 	try {
 		await client.connect()
 		const db = client.db(dbName)
 		const collection = db.collection(collectionName)
-		response = await collection.findOneAndUpdate({_id: new ObjectId(id)}, {$set: body})
+		response = await collection.findOneAndUpdate({_id: new ObjectId(id)}, {$set: newGate})
 	} finally {
 		await client.close()
 	}

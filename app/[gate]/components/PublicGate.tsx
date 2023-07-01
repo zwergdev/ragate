@@ -5,18 +5,25 @@ import CodePage from '@/app/[gate]/components/CodePage'
 import FormPage from '@/app/[gate]/components/FormPage'
 import Thanks from '@/app/[gate]/components/Thanks'
 
+export enum Status {
+	START,
+	CODE_VALID,
+	FORM_SENT
+}
+
 export default function ({gate}: {gate: Gate}) {
-	const [isCodeValid, setIsCodeValid] = useState(false)
-	const [isFormSent, setIsFormSent] = useState(false)
+	const [status, setStatus] = useState(Status.START)
 
 	const render = () => {
-		if (!isCodeValid && !isFormSent) {
-			return <CodePage _id={gate._id} bio={gate.bio} setIsValid={setIsCodeValid} />
+		if (status === Status.START) {
+			return <CodePage _id={gate._id} bio={gate.bio} setStatus={setStatus} />
 		}
-		if (isCodeValid) {
-			return <FormPage values={gate.values} submitPlaceholder={gate.bio.submitButton} setIsSent={setIsFormSent} />
+		if (status === Status.CODE_VALID) {
+			return (
+				<FormPage _id={gate._id} values={gate.values} submitPlaceholder={gate.bio.submitButton} setStatus={setStatus} />
+			)
 		}
-		if (isFormSent) {
+		if (status === Status.FORM_SENT) {
 			return <Thanks message={gate.bio.byeBye} />
 		}
 	}

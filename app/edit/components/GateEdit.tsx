@@ -3,6 +3,8 @@ import {useSelector} from 'react-redux'
 import {bioSelector, formSelector, setBio} from '@/app/redux/gateSlice'
 import {useAppDispatch} from '@/app/redux/store'
 import {saveGate} from '@/services/getGates'
+import {toast} from 'react-toastify'
+import {Gate} from '@/app/api/edit/gates'
 
 export default function GateEdit() {
 	const dispatch = useAppDispatch()
@@ -14,12 +16,35 @@ export default function GateEdit() {
 		const updatedBio = {...bio, [name]: value}
 		dispatch(setBio(updatedBio))
 	}
+
+	function formValidation(newGate: Gate) {
+		const bioValues = Object.values(newGate.bio)
+		if (bioValues.includes('')) {
+			return false
+		}
+
+		const codesValues = newGate.codes.map(code => code.value)
+		if (codesValues.includes('')) {
+			return false
+		}
+
+		const valuesValues = newGate.values.map(value => value.value)
+		return !valuesValues.includes('')
+	}
+
 	const handleSaveGate = async () => {
 		const newGate = {...form}
 		delete newGate._id
-		const response = await saveGate(form._id, newGate)
-		if (response.ok) {
-			alert('Saved')
+		const validation = formValidation(newGate)
+		if (validation) {
+			const response = await saveGate({id: form._id, gate: newGate})
+			if (response.ok) {
+				toast.success('Saved')
+			} else {
+				toast.error('Error')
+			}
+		} else {
+			toast.error('Empty values')
 		}
 	}
 

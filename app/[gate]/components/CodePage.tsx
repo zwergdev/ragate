@@ -3,25 +3,38 @@ import Image from 'next/image'
 import {FormEvent, useState} from 'react'
 import {checkCode} from '@/services/getGates'
 import {ObjectId} from 'mongodb'
+import {toast} from 'react-toastify'
+import {Status} from '@/app/[gate]/components/PublicGate'
+import {fetchingToast} from '@/services/toast'
 
 type Props = {
 	bio: Bio
-	setIsValid: (b: boolean) => void
+	setStatus: (status: Status) => void
 	_id: ObjectId | undefined
 }
 
-export default function CodePage({bio, setIsValid, _id}: Props) {
+export default function CodePage({bio, setStatus, _id}: Props) {
 	const [code, setCode] = useState<string>('')
+	const [attempts, setAttempts] = useState(5)
 
 	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		const body = {_id, code}
-		const response = await checkCode(body)
-		if (response) {
-			setIsValid(true)
-			console.log('good')
+		if (code) {
+			if (attempts > 0) {
+				setAttempts(attempts - 1)
+				const promiseToast = toast.loading('Checking your code 🧐')
+				const response = await checkCode({_id, code})
+				if (response) {
+					setStatus(Status.CODE_VALID)
+					fetchingToast({promiseToast, text: 'Code is legitimate 👌', type: 'success'})
+				} else {
+					fetchingToast({promiseToast, text: 'Incorrect code 🤯', type: 'error'})
+				}
+			} else {
+				toast.error('Exceeded the maximum number of attempts.')
+			}
 		} else {
-			console.error('bad')
+			toast.error('Enter the code before verification.')
 		}
 	}
 

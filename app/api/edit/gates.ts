@@ -24,6 +24,7 @@ export type Gate = {
 	bio: Bio
 	codes: Code[]
 	values: Value[]
+	form?: []
 }
 
 export const gates: Gate[] = [
@@ -59,5 +60,6 @@ export const gateTemplate: Gate = {
 		{value: 'Code #3', attempts: 100},
 		{value: 'Code #4', attempts: 400}
 	],
-	values: [{value: 'Twitter'}, {value: 'Discord ID'}, {value: 'Wallet'}]
+	values: [{value: 'Twitter'}, {value: 'Discord ID'}, {value: 'Wallet'}],
+	form: []
 }

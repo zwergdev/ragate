@@ -1,12 +1,15 @@
+'use client'
 import {Gate} from '@/app/api/edit/gates'
 import Image from 'next/image'
 import Link from 'next/link'
 import CreateGateBox from '@/app/home/components/CreateGateBox'
+import {useState} from 'react'
 
 export default function MyGates({gates}: {gates: Gate[]}) {
+	const [myGates, setMyGates] = useState(gates)
 	return (
 		<div className='myGatesBox'>
-			{gates.map((gate, idx) => (
+			{myGates.map((gate, idx) => (
 				<Link href={`/edit/${gate._id}`} className='gate' key={idx}>
 					<Image src='/skull.jpg' width={200} height={200} alt='gate image' />
 					<div className='bioBox'>
@@ -23,7 +26,7 @@ export default function MyGates({gates}: {gates: Gate[]}) {
 					</div>
 				</Link>
 			))}
-			<CreateGateBox />
+			<CreateGateBox setMyGates={setMyGates} />
 		</div>
 	)
 }
