@@ -76,6 +76,27 @@ body{
     border: 1px solid rgba(255, 255, 255, 1);
   }
 }
+.profile_button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: $gray_light;
+  font-size: 15px;
+  font-weight: 300;
+  &:hover{
+    img{
+      border-color: $gray_light;
+    }
+  }
+  img{
+    transition: all .4s ease-in-out;
+    border-radius: 8px;
+    height: 40px;
+    width: 40px;
+    border: 1px solid $gray_dark;
+  }
+}
 @mixin max-screen($res) {
   @media screen and (max-width: $res) {
     @content;
@@ -97,27 +118,6 @@ header.home{
       span{
         font-weight: 600;
         font-size: 36px;
-      }
-    }
-    .profile_button{
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      color: $gray_light;
-      font-size: 15px;
-      font-weight: 300;
-      &:hover{
-        img{
-          border-color: $gray_light;
-        }
-      }
-      img{
-        transition: all .4s ease-in-out;
-        border-radius: 8px;
-        height: 40px;
-        width: 40px;
-        border: 1px solid $gray_dark;
       }
     }
   }
@@ -539,6 +539,9 @@ header.edit{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  form{
+    text-align: center;
+  }
   .publicImage{
     border-radius: 25px;
     border: 1px solid rgba(128, 128, 128, .5);
@@ -554,8 +557,10 @@ header.edit{
     opacity: .7;
   }
   .inputBox{
+    width: 230px;
+    margin: auto auto 20px;
     position: relative;
-    margin-bottom: 20px;
+    text-align: left;
     &:focus-within{
       label{
         display: none;
@@ -563,6 +568,7 @@ header.edit{
     }
     .button{
       cursor: text;
+      width: 100%;
     }
     label{
       cursor: text;

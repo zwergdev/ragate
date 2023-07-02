@@ -38,9 +38,9 @@ export default function FormPage({values, submitPlaceholder, setStatus, _id}: Pr
 
 	const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
-		const validation = validateForm()
-		if (validation) {
+		if (validateForm()) {
 			const response = await sendForm({_id, form})
+			console.log(response)
 			if (response) {
 				setStatus(Status.FORM_SENT)
 			} else {

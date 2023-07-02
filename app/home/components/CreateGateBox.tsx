@@ -6,8 +6,7 @@ import {fetchingToast} from '@/services/toast'
 export default function CreateGateBox({setMyGates}: {setMyGates: (gates: Gate[]) => void}) {
 	const handleCreateGate = async () => {
 		const promiseToast = toast.loading('Creating the gate 🧐')
-		const response = await createGate()
-		if (response) {
+		if (await createGate()) {
 			const gates = await getMyGates()
 			fetchingToast({promiseToast, text: 'Gate created 👌', type: 'success'})
 			setMyGates(gates)

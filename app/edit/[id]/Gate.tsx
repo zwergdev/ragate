@@ -15,7 +15,6 @@ export default function Gate({id}: {id: string}) {
 	useEffect(() => {
 		const getData = async () => {
 			const state = await getGate(id)
-			console.log(state)
 			dispatch(setState(state))
 		}
 		getData()

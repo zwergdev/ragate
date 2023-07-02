@@ -38,7 +38,7 @@ export default function GateEdit() {
 		const validation = formValidation(newGate)
 		if (validation) {
 			const response = await saveGate({id: form._id, gate: newGate})
-			if (response.ok) {
+			if (response) {
 				toast.success('Saved')
 			} else {
 				toast.error('Error')
