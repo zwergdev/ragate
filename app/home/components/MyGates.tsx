@@ -4,19 +4,22 @@ import Image from 'next/image'
 import Link from 'next/link'
 import CreateGateBox from '@/app/home/components/CreateGateBox'
 import {useState} from 'react'
+import HurryUp from '@/app/home/components/HurryUp'
 
 export default function MyGates({gates}: {gates: Gate[]}) {
 	const [myGates, setMyGates] = useState(gates)
+
+	if (!myGates) return <HurryUp setMyGates={setMyGates} />
 	return (
 		<div className='myGatesBox'>
 			{myGates.map((gate, idx) => (
 				<Link href={`/edit/${gate._id}`} className='gate' key={idx}>
 					<Image src='/skull.jpg' width={200} height={200} alt='gate image' />
 					<div className='bioBox'>
-						<div>
+						<div className='textBox'>
 							<h6>{gate.bio.title}</h6>
 							<p>
-								{gate.bio.description.length > 50 ? `${gate.bio.description.slice(0, 50)}...` : gate.bio.description}
+								{gate.bio.description.length > 35 ? `${gate.bio.description.slice(0, 35)}...` : gate.bio.description}
 							</p>
 						</div>
 						<div className='buttonsBox'>

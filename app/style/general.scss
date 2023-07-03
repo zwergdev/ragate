@@ -180,13 +180,12 @@ header.home{
       flex-wrap: wrap;
       .gate{
         background: linear-gradient(320deg, #695535, #493565, #6c2f2f);
-        padding: 10px;
         flex: 1 1 33%;
         max-width: 400px;
         cursor: pointer;
         width: min-content;
+        overflow: hidden;
         display: flex;
-        gap: 10px;
         position: relative;
         transition: all .3s ease-in-out;
         border-radius: 12px;
@@ -242,28 +241,33 @@ header.home{
           }
         }
         img{
-          width: 150px;
-          height: 150px;
+          height: 172px;
+          width: 172px;
           transition: all .3s ease-in-out;
-          border: 1px solid rgba(128, 128, 128, .5);
-          border-radius: 12px;
+          border-right: 1px solid rgba(128, 128, 128, .5);
         }
         .bioBox{
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          h6{
-            font-size: 23px;
-            margin: 10px 0;
-          }
-          p{
-            transition: all .3s ease-in-out;
-            opacity: .6;
-            margin-bottom: 10px;
+          .textBox{
+            padding: 10px 10px 0;
+            h6{
+              font-size: 23px;
+              margin-bottom: 10px;
+            }
+            p{
+              transition: all .3s ease-in-out;
+              opacity: .6;
+              margin-bottom: 10px;
+            }
           }
           .buttonsBox{
             display: flex;
-            gap: 10px;
+            gap: 8px;
+            padding: 0 8px;
+            justify-content: center;
+            margin-bottom: 8px;
             .button{
               color: rgba(255, 255, 255, 0.7);
               background-color: rgba(255, 255, 255, .05);

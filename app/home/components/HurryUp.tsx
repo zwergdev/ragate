@@ -1,12 +1,18 @@
-'use client'
 import Image from 'next/image'
-import {createGate} from '@/services/getGates'
+import {createGate, getMyGates} from '@/services/getGates'
+import {Gate} from '@/app/api/edit/gates'
+import {toast} from 'react-toastify'
+import {fetchingToast} from '@/services/toast'
 
-export default function HurryUp() {
+export default function HurryUp({setMyGates}: {setMyGates: (gates: Gate[]) => void}) {
 	const handleCreateGate = async () => {
-		const res = await createGate()
-		if (res.ok) {
-			alert('Created')
+		const promiseToast = toast.loading('Creating the gate 🧐')
+		if (await createGate()) {
+			const gates = await getMyGates()
+			fetchingToast({promiseToast, text: 'Gate created 👌', type: 'success'})
+			setMyGates(gates)
+		} else {
+			fetchingToast({promiseToast, text: 'Error! 🤯', type: 'error'})
 		}
 	}
 

@@ -25,26 +25,8 @@ export type Gate = {
 	codes: Code[]
 	values: Value[]
 	form?: []
+	image?: string
 }
-
-export const gates: Gate[] = [
-	{
-		bio: {
-			title: 'Untitled Gate',
-			description: 'Gate description',
-			codePlaceholder: "Code's placeholder",
-			submitButton: 'Submit button',
-			byeBye: 'Bye-bye message'
-		},
-		codes: [
-			{value: 'Code #1', attempts: 10},
-			{value: 'Code #2', attempts: 50},
-			{value: 'Code #3', attempts: 100},
-			{value: 'Code #4', attempts: 400}
-		],
-		values: [{value: 'Twitter'}, {value: 'Discord ID'}, {value: 'Wallet'}]
-	}
-]
 
 export const gateTemplate: Gate = {
 	bio: {
