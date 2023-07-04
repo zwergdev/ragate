@@ -14,7 +14,13 @@ export default function MyGates({gates}: {gates: Gate[]}) {
 		<div className='myGatesBox'>
 			{myGates.map((gate, idx) => (
 				<Link href={`/edit/${gate._id}`} className='gate' key={idx}>
-					<Image src='/skull.jpg' width={200} height={200} alt='gate image' />
+					<Image
+						className={gate.image ? 'imgAvailable' : 'imgUnavailable'}
+						src={gate.image ? gate.image[0].fileUrl : '/arrow-up.svg'}
+						width={200}
+						height={200}
+						alt='gate image'
+					/>
 					<div className='bioBox'>
 						<div className='textBox'>
 							<h6>{gate.bio.title}</h6>

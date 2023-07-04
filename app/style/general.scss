@@ -181,6 +181,7 @@ header.home{
       .gate{
         background: linear-gradient(320deg, #695535, #493565, #6c2f2f);
         flex: 1 1 33%;
+        box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
         max-width: 400px;
         cursor: pointer;
         width: min-content;
@@ -203,6 +204,10 @@ header.home{
           }
           img{
             border-color: $gray_light;
+            &.imgUnavailable{
+              opacity: .2;
+              background-color: rgba(0, 0, 0, .7);
+            }
           }
         }
         &:nth-child(2){
@@ -240,11 +245,26 @@ header.home{
             left: 140px;
           }
         }
-        img{
+        .imgAvailable{
           height: 172px;
           width: 172px;
           transition: all .3s ease-in-out;
           border-right: 1px solid rgba(128, 128, 128, .5);
+          flex: 1 1 100%;
+          max-width: 172px;
+          max-height: 172px;
+          object-fit: cover;
+          box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .imgUnavailable{
+          transition: all .3s ease-in-out;
+          background-color: black;
+          border-right: 1px solid rgba(255, 255, 255, 1);
+          padding: 35px;
+          width: 172px;
+          height: 172px;
+          opacity: .15;
+          box-shadow: 2px 0 10px rgba(255, 255, 255, 0.2);
         }
         .bioBox{
           display: flex;

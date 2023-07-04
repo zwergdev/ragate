@@ -4,8 +4,11 @@ import {Gate} from '@/app/api/edit/gates'
 import {useSelector} from 'react-redux'
 import {filesSelector, formSelector, imageSelector} from '@/app/redux/gateSlice'
 import {useUploadThing} from '@/services/uploadthing'
+import {fetchingToast} from '@/services/toast'
+import {useState} from 'react'
 
 export default function SaveButton() {
+	const [fetching, setFetching] = useState(false)
 	const imageLink = useSelector(imageSelector)
 	const files = useSelector(filesSelector)
 	const form = useSelector(formSelector)
@@ -26,22 +29,12 @@ export default function SaveButton() {
 		return !valuesValues.includes('')
 	}
 
-	const basicLoad = async (newGate: Gate) => {
-		const response = await saveGate({id: form._id, gate: newGate})
-		if (response) {
-			toast.success('Saved')
-		} else {
-			toast.error('Error')
-		}
-	}
-
 	const {startUpload} = useUploadThing('imageUploader', {
 		onClientUploadComplete: res => {
-			toast.success('Uploaded successfully!')
 			return res
 		},
 		onUploadError: () => {
-			toast.error('Error occurred while uploading')
+			toast.error('Error occurred while uploading image')
 		}
 	})
 
@@ -50,11 +43,26 @@ export default function SaveButton() {
 		delete newGate._id
 		const validation = formValidation(newGate)
 		if (validation) {
+			const promiseToast = toast.loading('Saving your gate 🧐')
 			if (files.length > 0) {
+				setFetching(true)
 				newGate.image = await startUpload(files)
-				basicLoad(newGate)
+				const response = await saveGate({id: form._id, gate: newGate})
+				if (response) {
+					fetchingToast({promiseToast, text: 'Gate saved 👌', type: 'success'})
+				} else {
+					fetchingToast({promiseToast, text: 'Error! 🤯', type: 'error'})
+				}
+				setFetching(false)
 			} else {
-				basicLoad(newGate)
+				setFetching(true)
+				const response = await saveGate({id: form._id, gate: newGate})
+				if (response) {
+					fetchingToast({promiseToast, text: 'Gate saved 👌', type: 'success'})
+				} else {
+					fetchingToast({promiseToast, text: 'Error! 🤯', type: 'error'})
+				}
+				setFetching(false)
 			}
 		} else {
 			toast.error('Empty values')
@@ -62,7 +70,7 @@ export default function SaveButton() {
 	}
 
 	return (
-		<button className='button save' onClick={handleSaveGate}>
+		<button className='button save' onClick={handleSaveGate} disabled={fetching}>
 			Save
 		</button>
 	)

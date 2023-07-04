@@ -16,7 +16,7 @@ export default function ({gate}: {gate: Gate}) {
 
 	const render = () => {
 		if (status === Status.START) {
-			return <CodePage _id={gate._id} bio={gate.bio} setStatus={setStatus} />
+			return <CodePage _id={gate._id} image={gate.image} bio={gate.bio} setStatus={setStatus} />
 		}
 		if (status === Status.CODE_VALID) {
 			return (

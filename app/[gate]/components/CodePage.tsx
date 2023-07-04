@@ -11,9 +11,10 @@ type Props = {
 	bio: Bio
 	setStatus: (status: Status) => void
 	_id: ObjectId | undefined
+	image: {fileUrl: string; fileKey: string}[] | undefined
 }
 
-export default function CodePage({bio, setStatus, _id}: Props) {
+export default function CodePage({bio, setStatus, _id, image}: Props) {
 	const [code, setCode] = useState<string>('')
 	const [attempts, setAttempts] = useState(5)
 
@@ -40,7 +41,13 @@ export default function CodePage({bio, setStatus, _id}: Props) {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<Image src='/skull.jpg' alt="gate's image" width={200} height={200} className='publicImage' />
+			<Image
+				src={image ? image[0].fileUrl : '/logo-rect.svg'}
+				alt="gate's image"
+				width={200}
+				height={200}
+				className='publicImage'
+			/>
 			<h5>{bio.title}</h5>
 			<p>{bio.description}</p>
 			<div className='inputBox'>
