@@ -30,7 +30,7 @@ export default function MyGates({gates}: {gates: Gate[]}) {
 						</div>
 						<div className='buttonsBox'>
 							<button className='button'>Codes: {gate.codes.length}</button>
-							<button className='button'>Values: {gate.values.length}</button>
+							<button className='button'>Inputs: {gate.values.length}</button>
 						</div>
 					</div>
 				</Link>

@@ -2,6 +2,7 @@ import {Value} from '@/app/api/edit/gates'
 import {useSelector} from 'react-redux'
 import {setValues, valuesSelector} from '@/app/redux/gateSlice'
 import {useAppDispatch} from '@/app/redux/store'
+import ExtraEdit from '@/app/edit/components/ExtraEdit'
 
 export default function ValuesEdit() {
 	const dispatch = useAppDispatch()
@@ -23,22 +24,30 @@ export default function ValuesEdit() {
 	}
 
 	return (
-		<div className='editMyValuesBox'>
-			<h5>Gate values</h5>
-			<ul>
-				{values.map((obj: Value, idx: number) => (
-					<li key={idx}>
-						<input type='text' value={obj.value} className='button' onChange={event => handleInputChange(event, idx)} />
-						<button className='delete' onClick={() => handleDelete(idx)}>
-							+
-						</button>
+		<div className='valuesAndConfigBox'>
+			<div className='editMyValuesBox'>
+				<h5>Gate inputs</h5>
+				<ul>
+					{values.map((obj: Value, idx: number) => (
+						<li key={idx}>
+							<input
+								type='text'
+								value={obj.value}
+								className='button'
+								onChange={event => handleInputChange(event, idx)}
+							/>
+							<button className='delete' onClick={() => handleDelete(idx)}>
+								+
+							</button>
+						</li>
+					))}
+					<li onClick={handleAdd}>
+						<button className='button'>Add</button>
+						<button className='delete'>+</button>
 					</li>
-				))}
-				<li onClick={handleAdd}>
-					<button className='button'>Add</button>
-					<button className='delete'>+</button>
-				</li>
-			</ul>
+				</ul>
+			</div>
+			<ExtraEdit />
 		</div>
 	)
 }

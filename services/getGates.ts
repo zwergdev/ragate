@@ -68,3 +68,25 @@ export const sendForm = async (values: object) => {
 
 	return response.json()
 }
+
+export const deleteGate = async (id: ObjectId | undefined) => {
+	const response = await fetch(`${SITE_URL}/api/delete/${id}`, {
+		cache: 'no-store'
+	})
+	if (!response.ok) {
+		throw new Error('Unable to save current gate.')
+	}
+
+	return response.json()
+}
+
+export const downloadApplicants = async (id: ObjectId | undefined) => {
+	const response = await fetch(`${SITE_URL}/api/download/${id}`, {
+		cache: 'no-store'
+	})
+	if (!response.ok) {
+		throw new Error('Unable to save current gate.')
+	}
+
+	return response.json()
+}
