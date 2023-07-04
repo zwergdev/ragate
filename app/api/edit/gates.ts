@@ -21,14 +21,15 @@ export type Bio = {
 
 export type Gate = {
 	_id?: ObjectId
+	image: {fileUrl: string; fileKey: string}[] | undefined
 	bio: Bio
 	codes: Code[]
 	values: Value[]
 	form?: []
-	image?: string
 }
 
 export const gateTemplate: Gate = {
+	image: undefined,
 	bio: {
 		title: 'Untitled Gate',
 		description: 'Gate description',

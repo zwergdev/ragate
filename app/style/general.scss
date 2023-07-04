@@ -396,10 +396,50 @@ header.edit{
     margin: auto;
     text-align: center;
     background: linear-gradient(320deg, #726b28, #6c2f2f, #254370);
-    img{
-      border-radius: 25px;
-      border: 1px solid rgba(128, 128, 128, .5);
-      margin-bottom: 40px;
+    .imageEditor{
+      position: relative;
+      .imageBox{
+        width: 200px;
+        margin: auto;
+        height: 200px;
+        border-radius: 25px;
+        background-color: rgba(0, 0, 0, .3);
+        border: 1px solid rgba(128, 128, 128, .5);
+        margin-bottom: 40px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        transition: all .4s ease-in-out;
+        align-items: center;
+        justify-content: center;
+        &:hover{
+          border: 1px solid rgb(164, 164, 164);
+          background-color: rgba(0, 0, 0, .4);
+          .hoverIcon{
+            opacity: .3;
+            filter: drop-shadow(2px 2px 10px #000) ;
+            &.withImage{
+              opacity: .75;
+            }
+          }
+          .previewImage{
+            filter: blur(3px) grayscale(50%);
+          }
+        }
+        .previewImage, .hoverIcon{
+          position: absolute;
+          transition: all .4s ease-in-out;
+        }
+        .hoverIcon{
+          width: 100px;
+          height: 100px;
+          opacity: .15;
+          &.withImage{
+            opacity: 0;
+          }
+        }
+      }
     }
     .gateBio{
       max-width: 400px;
