@@ -3,7 +3,7 @@ import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
 import './style/general.scss'
 
-const poppins = Poppins({weight: ['300', '400', '500', '600', '700', '800'], subsets: ['latin']})
+const poppins = Poppins({weight: ['100', '200', '300', '400', '500', '600', '700', '800'], subsets: ['latin']})
 
 export const metadata = {
 	title: 'Create Next App',
