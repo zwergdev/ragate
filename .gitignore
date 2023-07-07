@@ -1,0 +1,6 @@
+.env.local
+.idea
+/node_modules
+./.gitignore
+next-env.d.ts
+.next

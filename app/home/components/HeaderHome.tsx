@@ -1,5 +1,7 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
+import {Web3Button} from '@web3modal/react'
 
 export default function HeaderHome() {
 	return (
@@ -9,12 +11,13 @@ export default function HeaderHome() {
 					<Image src='/logo.svg' alt='logo' width={40} height={40} />
 					<span>RaGate</span>
 				</Link>
-				<div>
-					<button className='profile_button'>
-						<Image src='/zwerg_pfp.jpg' alt='profile image' width={40} height={40} />
-						zwergdev@gmail.com
-					</button>
-				</div>
+				<Web3Button />
+				{/*<div>*/}
+				{/*	<button className='profile_button'>*/}
+				{/*		<Image src='/logo-rect.svg' alt='profile image' width={40} height={40} />*/}
+				{/*		zwergdev@gmail.com*/}
+				{/*	</button>*/}
+				{/*</div>*/}
 			</nav>
 		</header>
 	)
