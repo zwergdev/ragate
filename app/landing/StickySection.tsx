@@ -1,3 +1,4 @@
+'use client'
 import Image, {StaticImageData} from 'next/image'
 import {useInView} from 'react-intersection-observer'
 import {useEffect, useState} from 'react'

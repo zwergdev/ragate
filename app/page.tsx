@@ -1,4 +1,3 @@
-'use client'
 import Image from 'next/image'
 import Link from 'next/link'
 import StickySection from '@/app/landing/StickySection'
@@ -14,8 +13,8 @@ export default function () {
 						<span>RaGate</span>
 					</Link>
 					<div className='buttonsBox'>
-						<button className='button'>Sign In</button>
-						<button className='button'>Log In</button>
+						<button className='shadowButton'>Sign In</button>
+						<button className='shadowButton'>Sign Up</button>
 					</div>
 				</div>
 			</header>
@@ -23,12 +22,11 @@ export default function () {
 				<section className='mainBanner'>
 					<div className='container'>
 						<h1>RaGate</h1>
-						<h2>Web3 Forms & Surveys</h2>
+						<h2>Web3-Based Forms</h2>
 						<p>
-							The most powerful survey creation tool that helps you identify your audience and understand your community
-							with ease.
+							Effortlessly determine your audience with the easy-to-use tool, providing password-protected form entry.
 						</p>
-						<button className='button'>Get started for free</button>
+						<button className='shadowButton'>Get started</button>
 					</div>
 					<div className='blob violet'></div>
 					<div className='blob razz'></div>

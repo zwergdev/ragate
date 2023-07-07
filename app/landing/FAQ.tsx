@@ -1,3 +1,4 @@
+'use client'
 import {useState} from 'react'
 import useSound from 'use-sound'
 import {landingConfig} from '@/app/landing/StickySection'
