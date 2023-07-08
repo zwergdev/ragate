@@ -2,7 +2,7 @@ import {Value} from '@/app/api/edit/gates'
 import {useSelector} from 'react-redux'
 import {setValues, valuesSelector} from '@/app/redux/gateSlice'
 import {useAppDispatch} from '@/app/redux/store'
-import ExtraEdit from '@/app/edit/components/ExtraEdit'
+import ExtraEdit from '@/app/home/edit/components/ExtraEdit'
 
 export default function ValuesEdit() {
 	const dispatch = useAppDispatch()

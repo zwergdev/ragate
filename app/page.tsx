@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import StickySection from '@/app/landing/StickySection'
 import FAQ from '@/app/landing/FAQ'
+import './style/landing.scss'
+import FakeButton from '@/app/landing/FakeButton'
 
 export default function () {
 	return (
@@ -13,8 +15,12 @@ export default function () {
 						<span>RaGate</span>
 					</Link>
 					<div className='buttonsBox'>
-						<button className='shadowButton'>Sign In</button>
-						<button className='shadowButton'>Sign Up</button>
+						<Link href={'/home'} className='shadowButton button'>
+							Sign In
+						</Link>
+						<Link href={'/home'} className='shadowButton button'>
+							Sign Up
+						</Link>
 					</div>
 				</div>
 			</header>
@@ -26,7 +32,10 @@ export default function () {
 						<p>
 							Effortlessly determine your audience with the easy-to-use tool, providing password-protected form entry.
 						</p>
-						<button className='shadowButton'>Get started</button>
+						<Link href={'/home'} className='shadowButton button'>
+							<Image src='/rocket.svg' alt='door icon' width={22} height={22} />
+							Launch app
+						</Link>
 					</div>
 					<div className='blob violet'></div>
 					<div className='blob razz'></div>
@@ -40,16 +49,16 @@ export default function () {
 								<Image src='/logo-rect.svg' alt='logo code page preview' width={150} height={150} />
 								<h6>Some Project DAO</h6>
 								<p>Developed by one person.</p>
-								<span className='fakeInput'>Code</span>
-								<span className='fakeInput'>Check</span>
+								<input className='fakeInput' placeholder='Code' />
+								<FakeButton placeholder='Check' />
 							</div>
 							<div className='sol2'>
-								<span className='fakeInput'>Twitter</span>
-								<span className='fakeInput'>DiscordID</span>
-								<span className='fakeInput'>Wallet</span>
-								<span className='fakeInput'>TelegramID</span>
-								<span className='fakeInput'>Wish</span>
-								<span className='fakeInput'>Submit</span>
+								<input className='fakeInput' placeholder='Twitter' />
+								<input className='fakeInput' placeholder='DiscordID' />
+								<input className='fakeInput' placeholder='Wallet' />
+								<input className='fakeInput' placeholder='TelegramID' />
+								<input className='fakeInput' placeholder='Twitter' />
+								<FakeButton placeholder='Submit' />
 							</div>
 							<span className='sol3'>Thank you for your attention! We will contact you later.</span>
 						</div>

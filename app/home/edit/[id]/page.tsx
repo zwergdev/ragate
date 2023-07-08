@@ -1,7 +1,7 @@
 'use client'
 import {store} from '@/app/redux/store'
 import {Provider} from 'react-redux'
-import Gate from '@/app/edit/[id]/Gate'
+import Gate from '@/app/home/edit/[id]/Gate'
 
 type Props = {
 	params: {id: string}

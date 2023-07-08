@@ -1,4 +1,4 @@
-import {getGate} from '@/services/getGates'
+import {getPublicGate} from '@/services/getGates'
 import PublicGate from '@/app/[gate]/components/PublicGate'
 
 type Props = {
@@ -6,7 +6,7 @@ type Props = {
 }
 
 export default async function ({params: {gate}}: Props) {
-	const currentGate = await getGate(gate)
+	const currentGate = await getPublicGate(gate)
 
 	return (
 		<>

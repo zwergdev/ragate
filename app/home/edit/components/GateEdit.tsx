@@ -1,6 +1,6 @@
-import ImageEditor from '@/app/edit/components/ImageEditor'
-import SaveButton from '@/app/edit/components/SaveButton'
-import BioEditor from '@/app/edit/components/BioEditor'
+import ImageEditor from '@/app/home/edit/components/ImageEditor'
+import SaveButton from '@/app/home/edit/components/SaveButton'
+import BioEditor from '@/app/home/edit/components/BioEditor'
 
 export default function GateEdit() {
 	return (

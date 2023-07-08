@@ -21,8 +21,19 @@ export const Providers = ({children}: {children: React.ReactNode}) => {
 			<Web3Modal
 				projectId={projectId}
 				ethereumClient={ethereumClient}
+				themeMode='dark'
 				themeVariables={{
-					'--w3m-font-family': 'Poppins, sans-serif'
+					'--w3m-font-family': 'Poppins, sans-serif',
+					'--w3m-text-big-bold-font-family': 'Poppins, sans-serif',
+					'--w3m-text-medium-regular-font-family': 'Poppins, sans-serif',
+					'--w3m-text-small-regular-font-family': 'Poppins, sans-serif',
+					'--w3m-text-small-thin-font-family': 'Poppins, sans-serif',
+					'--w3m-text-xsmall-bold-font-family': 'Poppins, sans-serif',
+					'--w3m-text-xsmall-regular-font-family': 'Poppins, sans-serif',
+					'--w3m-accent-color': 'rgba(100, 156, 222, .91)',
+					'--w3m-overlay-background-color': 'rgba(0, 0, 0, 0.7)',
+					'--w3m-overlay-backdrop-filter': 'blur(5px)',
+					'--w3m-background-color': '#151515'
 				}}
 			/>
 		</>

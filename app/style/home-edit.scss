@@ -1,0 +1,555 @@
+@import "variables";
+
+// <-- HEADER HOME -->
+header.home{
+  margin-bottom: 50px;
+  .container{
+    height: 72px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .profile_button{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      color: $gray_light;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      .image{
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        background-color: rgb(238, 102, 102);
+        background-image: radial-gradient(at 66% 77%, #7171e8 0,transparent 50%),radial-gradient(at 29% 97%, #72de72,transparent 50%),radial-gradient(at 99% 86%,white 0,transparent 50%),radial-gradient(at 29% 88%,yellow 0,transparent 50%);
+        transition: all .4s ease-in-out;
+        border-radius: 8px;
+        height: 30px;
+        width: 30px;
+        border: 1px solid $gray_dark;
+      }
+      &:hover{
+        .image{
+          border-color: $gray_light;
+        }
+      }
+    }
+    .toLanding{
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      span{
+        font-weight: 600;
+        font-size: 36px;
+      }
+    }
+    .toHome{
+      font-size: 25px;
+      font-weight: 500;
+      &:before{
+        content: '<';
+        font-weight: 300;
+        margin-right: 15px;
+      }
+    }
+  }
+}
+// <-- HEADER HOME -->
+
+// <-- HOME -->
+.home{
+  .container{
+    .box{
+      padding-bottom: 100px;
+    }
+    .createBox{
+      text-align: center;
+      img{
+        margin-top: 150px;
+        width: 200px;
+        height: auto;
+        margin-bottom: 50px;
+        transform-origin: bottom;
+        filter: blur(20px);
+        animation: swinging 10s linear infinite;
+        @keyframes swinging {
+          0% {
+            transform: rotate(0deg);
+          }
+          25% {
+            transform: rotate(45deg);
+          }
+          50% {
+            transform: rotate(0deg);
+          }
+          75% {
+            transform: rotate(-45deg);
+          }
+          100%{
+            transform: rotate(0deg);
+
+          }
+        }
+      }
+      p{
+        margin-bottom: 15px;
+        opacity: .7;
+      }
+      .button{
+        margin: auto;
+        width: max-content;
+        &:before{
+          color: $black;
+          content: '+';
+          margin-right: 6px;
+          font-weight: 700;
+        }
+      }
+    }
+    .myGatesBox{
+      margin-top: 50px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      .gate{
+        background: linear-gradient(320deg, #695535, #493565, #6c2f2f);
+        flex: 1 1 33%;
+        box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.2);
+        max-width: 400px;
+        cursor: pointer;
+        width: min-content;
+        overflow: hidden;
+        display: flex;
+        position: relative;
+        transition: all .3s ease-in-out;
+        border-radius: 12px;
+        border: 1px solid rgba(128, 128, 128, .5);
+        &:hover{
+          border: 1px solid $gray_light;
+          .bioBox{
+            p{
+              opacity: 1;
+            }
+            .buttonsBox .button{
+              color: $white;
+              border-color: $gray_light;
+            }
+          }
+          img{
+            border-color: $gray_light;
+            &.imgUnavailable{
+              opacity: .2;
+              background-color: rgba(0, 0, 0, .7);
+            }
+          }
+        }
+        &:nth-child(2){
+          background: linear-gradient(45deg, #726b28, #254370, #412e65);
+        }
+        &:nth-child(3){
+          background: linear-gradient(125deg, #6c2f2f, #2f5e46, #5e5a2f);
+        }
+        &:nth-child(4){
+          background: linear-gradient(320deg, #726b28, #6c2f2f, #254370);
+        }
+        &:nth-child(5){
+          background: linear-gradient(45deg, #493565, #2f5e46, #56452b);
+        }
+        &:nth-child(6){
+          background: linear-gradient(125deg, #726b28, #254370, #6c2f2f);
+        }
+        &:last-child{
+          position: relative;
+          opacity: .2;
+          min-height: 172px;
+          &:hover{
+            span{
+              opacity: .3;
+            }
+          }
+          span{
+            transition: all .3s ease-in-out;
+            position: absolute;
+            font-size: 200px;
+            font-weight: 800;
+            top: -17px;
+            opacity: .1;
+            line-height: 1;
+            left: 140px;
+          }
+        }
+        .imgAvailable{
+          height: 172px;
+          width: 172px;
+          transition: all .3s ease-in-out;
+          border-right: 1px solid rgba(128, 128, 128, .5);
+          flex: 1 1 100%;
+          max-width: 172px;
+          max-height: 172px;
+          object-fit: cover;
+          box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .imgUnavailable{
+          transition: all .3s ease-in-out;
+          background-color: black;
+          border-right: 1px solid rgba(255, 255, 255, 1);
+          padding: 35px;
+          width: 172px;
+          height: 172px;
+          opacity: .15;
+          box-shadow: 2px 0 10px rgba(255, 255, 255, 0.2);
+        }
+        .bioBox{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .textBox{
+            padding: 10px 10px 0;
+            h6{
+              font-weight: 600;
+              font-size: 23px;
+              margin-bottom: 10px;
+            }
+            p{
+              transition: all .3s ease-in-out;
+              opacity: .6;
+              margin-bottom: 10px;
+            }
+          }
+          .buttonsBox{
+            display: flex;
+            gap: 8px;
+            padding: 0 8px;
+            justify-content: center;
+            margin-bottom: 8px;
+            .button{
+              color: rgba(255, 255, 255, 0.7);
+              background-color: rgba(255, 255, 255, .05);
+              border-color: $gray;
+              padding: 0 6px;
+              height: 35px;
+              &:hover{
+                box-shadow: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// <-- HOME -->
+
+// <-- EDIT -->
+.edit{
+  .container{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    .editMyCodesBox, .valuesAndConfigBox{
+      width: 25%;
+      h5{
+        background: linear-gradient(165deg, #726b28, #254370, #6c2f2f);
+        border-radius: 8px;
+        padding: 3px 10px;
+        text-align: center;
+        color: #c7c3c3;
+        margin-bottom: 20px;
+        box-shadow:0 0 0 2px rgba(255, 255, 255, 0.1) inset;
+      }
+    }
+  }
+  .editMyCodesBox{
+    ul li{
+      margin-bottom: 5px;
+      display: flex;
+      justify-content: space-between;
+      border-radius: 6px;
+      padding: 5px 10px;
+      transition: all .3s ease-in-out;
+      &:hover, &:focus-within{
+        background-color: rgba(128, 128, 128, .3);
+      }
+      .code{
+        font-size: 16px;
+        font-weight: 400;
+        width: 100%;
+        transition: all .3s ease-in-out;
+      }
+      .codeAttempts{
+        width: 75px;
+        text-align: right;
+        -moz-appearance: textfield;
+        opacity: .5;
+        font-weight: 600;
+        &::-webkit-inner-spin-button, &::-webkit-outer-spin-button{
+          -webkit-appearance: none;
+          margin: 0;
+        }
+      }
+      .delete{
+        margin-left: 10px;
+        font-weight: 700;
+        rotate: 45deg;
+        font-size: 20px;
+        color: $red;
+        opacity: .5;
+        transition: all .3s ease-in-out;
+        &:hover{
+          opacity: 1;
+        }
+      }
+      &:last-child{
+        cursor: pointer;
+        &:hover{
+          .code{
+            opacity: .5;
+          }
+          .delete{
+            opacity: 1;
+          }
+        }
+        .code{
+          opacity: .2;
+        }
+        .delete{
+          opacity: .2;
+          rotate: 0deg;
+          color: $green;
+        }
+      }
+    }
+  }
+  .editMyGateBox{
+    flex: 1;
+    border-radius: 15px;
+    padding: 25px 0;
+    width: 50%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow:0 0 0 2px rgba(255, 255, 255, 0.1) inset;
+    background: linear-gradient(320deg, #726b28, #6c2f2f, #254370);
+    .imageEditor{
+      position: relative;
+      .imageBox{
+        width: 200px;
+        margin: auto auto 40px;
+        height: 200px;
+        border-radius: 25px;
+        background-color: rgba(0, 0, 0, .3);
+        border: 1px solid rgba(128, 128, 128, .5);
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        transition: all .4s ease-in-out;
+        align-items: center;
+        justify-content: center;
+        &:hover{
+          border: 1px solid rgb(164, 164, 164);
+          background-color: rgba(0, 0, 0, .4);
+          .hoverIcon{
+            opacity: .3;
+            filter: drop-shadow(2px 2px 10px #000) ;
+            &.withImage{
+              opacity: .75;
+            }
+          }
+          .previewImage{
+            filter: blur(3px) grayscale(50%);
+          }
+        }
+        .previewImage, .hoverIcon{
+          position: absolute;
+          transition: all .4s ease-in-out;
+        }
+        .hoverIcon{
+          width: 100px;
+          height: 100px;
+          opacity: .15;
+          &.withImage{
+            opacity: 0;
+          }
+        }
+      }
+    }
+    .gateBio{
+      max-width: 400px;
+      margin: auto;
+      .titleInput{
+        padding: 0 10px;
+        max-width: 400px;
+        width: 100%;
+        font-weight: 600;
+        text-align: left;
+        font-size: 30px;
+        margin-bottom: 15px;
+        border-radius: 6px;
+        transition: all .3s ease-in-out;
+        &:hover, &:focus{
+          background-color: rgba(128, 128, 128, .3);
+        }
+      }
+      .descriptionInput{
+        padding: 5px 10px;
+        max-width: 400px;
+        width: 100%;
+        text-align: left;
+        font-weight: 400;
+        font-size: 16px;
+        margin-bottom: 20px;
+        opacity: .7;
+        transition: all .3s ease-in-out;
+        border-radius: 6px;
+        &:hover, &:focus{
+          background-color: rgba(128, 128, 128, .3);
+        }
+      }
+      .button{
+        color: #93938e;
+        margin-bottom: 20px;
+        justify-content:flex-start;
+        max-width: 200px;
+        cursor: text;
+        &.codePlaceholder{
+          text-align: left;
+        }
+        &.save{
+          cursor: pointer;
+          justify-content: center;
+        }
+      }
+      .submitButtonBox{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        .submitButton{
+          margin-bottom: 0;
+          min-width: 40px;
+          cursor: pointer;
+          text-align: center;
+          color: $black;
+        }
+        .submitButtonPlaceholder{
+          padding: 5px 10px;
+          flex: 1 1 auto;
+          max-width: 400px;
+          text-align: left;
+          font-weight: 400;
+          font-size: 16px;
+          border-radius: 6px;
+          transition: all .3s ease-in-out;
+          opacity: .7;
+          &:hover, &:focus{
+            background-color: rgba(128, 128, 128, .3);
+          }
+        }
+      }
+    }
+    .saveBox{
+      padding-top: 25px;
+      border-top: 1px solid $gray;
+      max-width: 400px;
+      margin: auto;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  .valuesAndConfigBox{
+    .editMyValuesBox{
+      h5{
+        background: linear-gradient(320deg, #695535, #493565, #6c2f2f);
+      }
+      ul li{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 10px;
+        .button{
+          cursor: text;
+          color: #93938e;
+          justify-content:flex-start;
+          width: 200px;
+        }
+        .delete{
+          font-weight: 700;
+          rotate: 45deg;
+          font-size: 20px;
+          color: $red;
+          opacity: .5;
+          transition: all .3s ease-in-out;
+          &:hover{
+            opacity: 1;
+          }
+        }
+        &:last-child{
+          margin-bottom: 0;
+          cursor: pointer;
+          &:hover{
+            .button{
+              opacity: .5;
+              cursor: pointer;
+            }
+            .delete{
+              opacity: 1;
+            }
+          }
+          .button{
+            opacity: .2;
+          }
+          .delete{
+            opacity: .2;
+            rotate: 0deg;
+            color: $green;
+          }
+        }
+      }
+    }
+    .editExtra{
+      margin-top: 50px;
+      h5{
+        background: linear-gradient(225deg, #493565, #2f5e46, #56452b);
+      }
+      .buttonsBox{
+        .copyDelete{
+          display: flex;
+          gap: 17px;
+          justify-content: space-between;
+          margin-bottom: 18px;
+          .button{
+            border-color: #4b5898;
+            &:hover{
+              border-color: #003cff;
+            }
+          }
+          .delete{
+            border-color: #6c2f2f;
+            &:hover{
+              border-color: #dc2a2a;
+            }
+          }
+        }
+        .button{
+          width: 100%;
+          background-color: transparent;
+          color: #c7c3c3;
+          border-color: #64468d;
+          &:hover{
+            box-shadow: none;
+            border-color: #8332f1;
+          }
+          &.enter{
+            border-color: #888241;
+            margin: 18px 0;
+            &:hover{
+              border-color: #FFF478;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// <-- EDIT -->

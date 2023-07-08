@@ -1,7 +1,7 @@
 import {Poppins} from 'next/font/google'
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.min.css'
-import './style/general.scss'
+import './style/global.scss'
 
 const poppins = Poppins({weight: ['100', '200', '300', '400', '500', '600', '700', '800'], subsets: ['latin']})
 

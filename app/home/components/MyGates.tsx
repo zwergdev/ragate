@@ -1,19 +1,18 @@
-'use client'
 import {Gate} from '@/app/api/edit/gates'
 import Image from 'next/image'
 import Link from 'next/link'
 import CreateGateBox from '@/app/home/components/CreateGateBox'
-import {useState} from 'react'
-import HurryUp from '@/app/home/components/HurryUp'
 
-export default function MyGates({gates}: {gates: Gate[]}) {
-	const [myGates, setMyGates] = useState(gates)
+type Props = {
+	myGates: Gate[]
+	setMyGates: (gates: Gate[]) => void
+}
 
-	if (!myGates) return <HurryUp setMyGates={setMyGates} />
+export default function MyGates({myGates, setMyGates}: Props) {
 	return (
 		<div className='myGatesBox'>
 			{myGates.map((gate, idx) => (
-				<Link href={`/edit/${gate._id}`} className='gate' key={idx}>
+				<Link href={`home/edit/${gate._id}`} className='gate' key={idx}>
 					<Image
 						className={gate.image ? 'imgAvailable' : 'imgUnavailable'}
 						src={gate.image ? gate.image[0].fileUrl : '/arrow-up.svg'}

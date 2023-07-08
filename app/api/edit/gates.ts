@@ -20,6 +20,7 @@ export type Bio = {
 }
 
 export type Gate = {
+	owner: string
 	_id?: ObjectId
 	image: {fileUrl: string; fileKey: string}[] | undefined
 	bio: Bio
@@ -28,21 +29,24 @@ export type Gate = {
 	form?: []
 }
 
-export const gateTemplate: Gate = {
-	image: undefined,
-	bio: {
-		title: 'Untitled Gate',
-		description: 'Gate description',
-		codePlaceholder: "Code's placeholder",
-		submitButton: 'Submit button',
-		byeBye: 'Bye-bye message'
-	},
-	codes: [
-		{value: 'Code #1', attempts: 10},
-		{value: 'Code #2', attempts: 50},
-		{value: 'Code #3', attempts: 100},
-		{value: 'Code #4', attempts: 400}
-	],
-	values: [{value: 'Twitter'}, {value: 'Discord ID'}, {value: 'Wallet'}],
-	form: []
+export const gateTemplate = (owner: string) => {
+	return {
+		owner: owner,
+		image: undefined,
+		bio: {
+			title: 'Untitled Gate',
+			description: 'Gate description',
+			codePlaceholder: "Code's placeholder",
+			submitButton: 'Submit button',
+			byeBye: 'Bye-bye message'
+		},
+		codes: [
+			{value: 'Code #1', attempts: 10},
+			{value: 'Code #2', attempts: 50},
+			{value: 'Code #3', attempts: 100},
+			{value: 'Code #4', attempts: 400}
+		],
+		values: [{value: 'Twitter'}, {value: 'Discord ID'}, {value: 'Wallet'}],
+		form: []
+	}
 }

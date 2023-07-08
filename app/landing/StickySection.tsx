@@ -58,7 +58,7 @@ export default function StickySection() {
 			<h5 ref={ref4} className={!inView4 ? 'invisible' : undefined}>
 				Fine-tuning of elements
 			</h5>
-			<Image src={imageSrc} alt='' width={500} height={500} quality={100} className='image'></Image>
+			<Image src={imageSrc} alt='' width={1000} height={1000} quality={100} className='image'></Image>
 		</>
 	)
 }

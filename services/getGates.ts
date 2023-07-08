@@ -3,7 +3,7 @@ import {Gate} from '@/app/api/edit/gates'
 
 export const SITE_URL = 'http://localhost:3000'
 
-export const getGate = async (id: string) => {
+export const getPublicGate = async (id: string) => {
 	const response = await fetch(`${SITE_URL}/api/edit/${id}`, {cache: 'no-store'})
 	if (!response.ok) {
 		throw new Error('Unable to fetch current gate.')
@@ -12,8 +12,21 @@ export const getGate = async (id: string) => {
 	return response.json()
 }
 
-export const getMyGates = async () => {
-	const response = await fetch(`${SITE_URL}/api/home`, {cache: 'no-store'})
+export const getGate = async ({address, id}: {address: string; id: string}) => {
+	const response = await fetch(`${SITE_URL}/api/auth/${id}`, {
+		cache: 'no-store',
+		method: 'POST',
+		body: JSON.stringify(address)
+	})
+	if (!response.ok) {
+		throw new Error('Unable to fetch current gate.')
+	}
+
+	return response.json()
+}
+
+export const getMyGates = async (owner: string) => {
+	const response = await fetch(`${SITE_URL}/api/home/${owner}`, {cache: 'no-store'})
 	if (!response.ok) {
 		throw new Error('Unable to fetch your gates.')
 	}
@@ -34,8 +47,8 @@ export const saveGate = async ({id, gate}: {id: ObjectId | undefined; gate: Gate
 	return response.json()
 }
 
-export const createGate = async () => {
-	const response = await fetch(`${SITE_URL}/api/create`, {cache: 'no-store'})
+export const createGate = async (owner: string) => {
+	const response = await fetch(`${SITE_URL}/api/create/${owner}`, {cache: 'no-store'})
 	if (!response.ok) {
 		throw new Error('Unable to create gate.')
 	}
