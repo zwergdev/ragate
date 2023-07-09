@@ -61,5 +61,8 @@
   .formPage{
     padding-top: 150px;
   }
+  @include max-screen(767px){
+    padding-top: 50px;
+  }
 }
 // <-- PUBLIC -->

@@ -523,9 +523,11 @@ footer{
   }
 }
 @include max-screen(980px){
-  .solution .solutionImage{
-    .sol2{
-      bottom: -240px;
+  .solution{
+    .solutionImage{
+      .sol2{
+        bottom: -240px;
+      }
     }
   }
 }
@@ -553,6 +555,20 @@ footer{
       left: 10px;
     }
   }
+  .features{
+    .blob.yellow, .blob.brown{
+      right: unset;
+      left: 0;
+    }
+  }
+}
+@include max-screen(767px){
+  .faq{
+    padding-bottom: 75px;
+    .questionsBox .question{
+      margin-bottom: 25px;
+    }
+  }
 }
 @include max-screen(730px){
   .solution{
@@ -572,11 +588,26 @@ footer{
       margin-top: 230px;
     }
     .content{
+      height: 1470px;
       .image{
         width: 320px;
         height: 320px;
         top: calc(100% - 320px);
-        margin-right: 0;
+      }
+      h5{
+        max-width: 100%;
+        &:nth-child(1){
+          top: 0;
+        }
+        &:nth-child(2){
+          top: 300px;
+        }
+        &:nth-child(3){
+          top: 600px;
+        }
+        &:nth-child(4){
+          top: 1000px;
+        }
       }
     }
   }
@@ -589,6 +620,11 @@ footer{
     div p{
       font-size: 15px;
     }
+  }
+}
+@include max-screen(480px){
+  .features .content .image{
+    margin-right: calc(50% - 160px);
   }
 }
 @include max-screen(450px){
@@ -623,11 +659,19 @@ footer{
   }
 }
 @include max-screen(385px){
+  .features .blob.green{
+    left: -15%;
+  }
   .solution .solutionImage .sol3{
     font-size: 28px;
   }
 }
 @include max-screen(345px){
+  .features .content .image{
+    width: 280px;
+    height: 280px;
+    margin-right: calc(50% - 140px);
+  }
   .solution .solutionImage .sol1{
     h6{
       font-size: 40px;}

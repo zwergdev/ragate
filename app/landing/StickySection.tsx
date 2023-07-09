@@ -29,13 +29,13 @@ export default function StickySection() {
 		if (inView1) {
 			setImageSrc(lan1)
 		}
-		if (inView2) {
+		if (inView2 && !inView1) {
 			setImageSrc(lan2)
 		}
-		if (inView3) {
+		if (inView3 && !inView2) {
 			setImageSrc(lan3)
 		}
-		if (inView4) {
+		if (inView4 && !inView3) {
 			setImageSrc(lan4)
 		}
 	}, [inView1, inView2, inView3, inView4])
@@ -49,13 +49,13 @@ export default function StickySection() {
 			<h5 ref={ref1} className={!inView1 ? 'invisible' : undefined}>
 				Unlimited number of gates
 			</h5>
-			<h5 ref={ref2} className={!inView2 ? 'invisible' : undefined}>
+			<h5 ref={ref2} className={!inView2 || inView1 ? 'invisible' : undefined}>
 				Flexible configuration of entry codes
 			</h5>
-			<h5 ref={ref3} className={!inView3 ? 'invisible' : undefined}>
+			<h5 ref={ref3} className={!inView3 || inView2 ? 'invisible' : undefined}>
 				Personalized configuration of collected information
 			</h5>
-			<h5 ref={ref4} className={!inView4 ? 'invisible' : undefined}>
+			<h5 ref={ref4} className={!inView4 || inView3 ? 'invisible' : undefined}>
 				Fine-tuning of elements
 			</h5>
 			<Image src={imageSrc} alt='' width={1000} height={1000} quality={100} className='image'></Image>
