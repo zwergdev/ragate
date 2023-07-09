@@ -87,7 +87,7 @@ h3{
   }
 }
 header{
-  margin-bottom: 50px;
+  margin-bottom: 200px;
   nav{
     width: min(100% - 15px, 1400px);
     margin-inline: auto;
@@ -131,11 +131,13 @@ header{
   }
 }
 .mainBanner{
-  padding: 150px 0 250px;
+  padding-bottom: 250px;
   text-align: center;
   position: relative;
+  overflow: hidden;
   .container{
     overflow: visible;
+    width: 100%;
   }
   h1{
     font-size: 100px;
@@ -167,6 +169,7 @@ header{
 }
 .solution{
   padding: 50px 0 250px;
+  overflow: hidden;
   .container{
     overflow: visible;
   }
@@ -389,6 +392,7 @@ header{
       button{
         width: 100%;
         font-size: 23px;
+        line-height: 130%;
         font-weight: 400;
         color: rgba(255, 255, 255, .7);
       }
@@ -455,15 +459,29 @@ footer{
 }
 // <-- LANDING -->
 @include max-screen(1400px){
-  .features{
-    .content{
-      h5{
-        left: 150px;
-      }
-    }
+  .features .content h5{
+    left: 150px;
+  }
+}
+@include max-screen(1340px){
+  .features .content .image{
+    margin-right: 150px;
+  }
+}
+@include max-screen(1290px){
+  .features .content h5{
+    left: 100px;
+  }
+}
+@include max-screen(1240px){
+  .features .content .image{
+    margin-right: 100px;
   }
 }
 @include max-screen(1200px){
+  .features .content h5{
+    left: 50px;
+  }
   .solution {
     h3{
       max-width: 800px;
@@ -482,10 +500,45 @@ footer{
     }
   }
 }
+@include max-screen(1140px){
+  .features .content .image{
+    margin-right: 50px;
+  }
+}
+@include max-screen(1090px){
+  .features .content h5{
+    left: 0;
+  }
+}
+@include max-screen(1040px){
+  .features .content .image{
+    margin-right: 0;
+  }
+}
+@include max-screen(1000px){
+  .features .content .image{
+    top: calc(50% - 200px);
+    width: 400px;
+    height: 400px;
+  }
+}
 @include max-screen(980px){
   .solution .solutionImage{
     .sol2{
       bottom: -240px;
+    }
+  }
+}
+@include max-screen(890px){
+  .features .content{
+    h5{
+      font-size: 40px;
+      max-width: 50%;
+    }
+    .image{
+      top: calc(50% - 175px);
+      width: 350px;
+      height: 350px;
     }
   }
 }
@@ -502,6 +555,9 @@ footer{
   }
 }
 @include max-screen(730px){
+  .solution{
+    padding-bottom: 480px;
+  }
   .solution .solutionImage{
     .sol2{
       right: calc(50% - 155px);
@@ -509,6 +565,29 @@ footer{
     .sol3{
       bottom: -410px;
       left: calc(50% - 212px);
+    }
+  }
+  .features{
+    h3{
+      margin-top: 230px;
+    }
+    .content{
+      .image{
+        width: 320px;
+        height: 320px;
+        top: calc(100% - 320px);
+        margin-right: 0;
+      }
+    }
+  }
+}
+@include max-screen(400px){
+  .faq .questionsBox .question{
+    button{
+      font-size: 18px;
+    }
+    div p{
+      font-size: 15px;
     }
   }
 }
@@ -529,7 +608,28 @@ footer{
       font-size: 13vw;
     }
     p{
-      font-size: 7vw;
+      font-size: 5vw;
     }
+  }
+  .solution .solutionImage{
+    .sol2{
+      width: 80%;
+      left: 10%;
+    }
+    .sol3{
+      left: 2.5%;
+      width: 95%;
+    }
+  }
+}
+@include max-screen(385px){
+  .solution .solutionImage .sol3{
+    font-size: 28px;
+  }
+}
+@include max-screen(345px){
+  .solution .solutionImage .sol1{
+    h6{
+      font-size: 40px;}
   }
 }

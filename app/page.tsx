@@ -8,23 +8,23 @@ import FakeButton from '@/app/landing/FakeButton'
 export default function () {
 	return (
 		<>
-			<header>
-				<nav>
-					<Link href='/' className='logoBox'>
-						<Image src='/logo.svg' alt='logo' width={40} height={40} />
-						<span>RaGate</span>
-					</Link>
-					<div className='buttonsBox'>
-						<Link href={'/home'} className='shadowButton button'>
-							Sign In
-						</Link>
-						<Link href={'/home'} className='shadowButton button'>
-							Sign Up
-						</Link>
-					</div>
-				</nav>
-			</header>
 			<section className='mainBanner'>
+				<header>
+					<nav>
+						<Link href='/' className='logoBox'>
+							<Image src='/logo.svg' alt='logo' width={40} height={40} />
+							<span>RaGate</span>
+						</Link>
+						<div className='buttonsBox'>
+							<Link href={'/home'} className='shadowButton button'>
+								Sign In
+							</Link>
+							<Link href={'/home'} className='shadowButton button'>
+								Sign Up
+							</Link>
+						</div>
+					</nav>
+				</header>
 				<div className='container'>
 					<h1>RaGate</h1>
 					<h2>Web3-Based Forms</h2>
