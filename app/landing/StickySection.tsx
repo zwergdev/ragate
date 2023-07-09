@@ -10,7 +10,7 @@ import lan4 from '@/public/lan4.jpg'
 import rect from '@/public/rect.svg'
 
 export const landingConfig = {
-	view: {threshold: 0.5, rootMargin: '-100px 0px'},
+	view: {threshold: 0, rootMargin: '-100px 0px'},
 	sound: {volume: 0.18}
 }
 

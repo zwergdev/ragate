@@ -9,3 +9,9 @@ $blue: #3F5FFF;
 $violet: #8d65c5;
 $yellow: #FFF478;
 $orange: #FFB02E;
+
+@mixin max-screen($res) {
+  @media screen and (max-width: $res) {
+    @content;
+  }
+}
