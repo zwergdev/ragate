@@ -14,19 +14,15 @@ export enum Status {
 export default function ({gate}: {gate: Gate}) {
 	const [status, setStatus] = useState(Status.START)
 
-	const render = () => {
-		if (status === Status.START) {
-			return <CodePage _id={gate._id} image={gate.image} bio={gate.bio} setStatus={setStatus} />
-		}
-		if (status === Status.CODE_VALID) {
-			return (
-				<FormPage _id={gate._id} values={gate.values} submitPlaceholder={gate.bio.submitButton} setStatus={setStatus} />
-			)
-		}
-		if (status === Status.FORM_SENT) {
-			return <Thanks message={gate.bio.byeBye} />
-		}
+	if (status === Status.START) {
+		return <CodePage _id={gate._id} image={gate.image} bio={gate.bio} setStatus={setStatus} />
 	}
-
-	return <div className='publicGate'>{render()}</div>
+	if (status === Status.CODE_VALID) {
+		return (
+			<FormPage _id={gate._id} values={gate.values} submitPlaceholder={gate.bio.submitButton} setStatus={setStatus} />
+		)
+	}
+	if (status === Status.FORM_SENT) {
+		return <Thanks message={gate.bio.byeBye} />
+	}
 }

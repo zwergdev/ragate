@@ -1,5 +1,5 @@
 export const metadata = {
-	title: 'Edit my Gate'
+	title: 'RaGate | Edit'
 }
 
 export default function EditLayout({children}: {children: React.ReactNode}) {

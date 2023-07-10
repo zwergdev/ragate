@@ -10,6 +10,7 @@ type State = {
 }
 const initialState: State = {
 	form: {
+		owner: '',
 		_id: undefined,
 		image: undefined,
 		bio: {
@@ -55,6 +56,7 @@ export const gateSlice = createSlice({
 })
 export const formSelector = (state: RootState) => state.gate.form
 export const bioSelector = (state: RootState) => state.gate.form.bio
+export const IdSelector = (state: RootState) => state.gate.form._id
 export const imageSelector = (state: RootState) => state.gate.form.image
 export const codesSelector = (state: RootState) => state.gate.form.codes
 export const valuesSelector = (state: RootState) => state.gate.form.values

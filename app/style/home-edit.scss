@@ -333,12 +333,13 @@ header.home{
       display: flex;
       justify-content: space-between;
       border-radius: 6px;
-      padding: 5px 10px;
+      padding: 3px 10px;
       transition: all .3s ease-in-out;
       &:hover, &:focus-within{
         background-color: rgba(128, 128, 128, .3);
       }
       .code{
+        line-height: 0;
         font-size: 16px;
         font-weight: 400;
         width: 100%;

@@ -1,5 +1,5 @@
 'use client'
-import {useState} from 'react'
+import {useCallback, useState} from 'react'
 import useSound from 'use-sound'
 import {landingConfig} from '@/app/landing/StickySection'
 
@@ -22,14 +22,17 @@ export default function FAQ() {
 	const [play] = useSound('/camera.wav', landingConfig.sound)
 	const [activeIndex, setActiveIndex] = useState<number | undefined>(undefined)
 
-	const toggleAccordion = (idx: number) => {
-		play()
-		if (idx === activeIndex) {
-			setActiveIndex(undefined)
-		} else {
-			setActiveIndex(idx)
-		}
-	}
+	const toggleAccordion = useCallback(
+		(idx: number) => {
+			play()
+			if (idx === activeIndex) {
+				setActiveIndex(undefined)
+			} else {
+				setActiveIndex(idx)
+			}
+		},
+		[activeIndex]
+	)
 
 	return (
 		<>

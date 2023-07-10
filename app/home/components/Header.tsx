@@ -4,11 +4,27 @@ import Link from 'next/link'
 import {useWeb3Modal} from '@web3modal/react'
 import {useAccount} from 'wagmi'
 import {usePathname} from 'next/navigation'
+import {useEffect, useState} from 'react'
 
 export default function Header() {
+	const [walletDefined, setWalletDefined] = useState(false)
 	const {address, isConnected} = useAccount()
+	const [wallet, setWallet] = useState(address)
 	const {open} = useWeb3Modal()
 	const pathname = usePathname()
+
+	useEffect(() => {
+		const checkWallet = () => {
+			if (address !== undefined) {
+				setWalletDefined(true)
+				setWallet(address)
+			} else {
+				setWalletDefined(false)
+				setWallet(undefined)
+			}
+		}
+		checkWallet()
+	}, [address, isConnected])
 
 	return (
 		<header className='home'>
@@ -23,10 +39,10 @@ export default function Header() {
 						<span>RaGate</span>
 					</Link>
 				)}
-				{address && isConnected && (
+				{walletDefined && (
 					<button className='profile_button' onClick={open}>
 						<span className='image'></span>
-						{`${address.slice(0, 4)}...${address.slice(-4)}`}
+						{`${wallet?.slice(0, 4)}...${wallet?.slice(-4)}`}
 					</button>
 				)}
 			</nav>

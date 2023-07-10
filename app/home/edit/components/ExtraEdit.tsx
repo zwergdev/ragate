@@ -1,6 +1,6 @@
 import clipboardCopy from 'clipboard-copy'
 import {useSelector} from 'react-redux'
-import {formSelector} from '@/app/redux/gateSlice'
+import {IdSelector} from '@/app/redux/gateSlice'
 import {toast} from 'react-toastify'
 import {deleteGate, downloadApplicants, SITE_URL} from '@/services/getGates'
 import Link from 'next/link'
@@ -10,7 +10,7 @@ import {saveAs} from 'file-saver'
 import * as XLSX from 'xlsx'
 
 export default function ExtraEdit() {
-	const {_id} = useSelector(formSelector)
+	const _id = useSelector(IdSelector)
 	const router = useRouter()
 
 	const copyLink = () => {

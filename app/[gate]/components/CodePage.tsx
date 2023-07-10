@@ -41,13 +41,9 @@ export default function CodePage({bio, setStatus, _id, image}: Props) {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<Image
-				src={image ? image[0].fileUrl : '/logo-rect.svg'}
-				alt="gate's image"
-				width={200}
-				height={200}
-				className='publicImage'
-			/>
+			<div className='publicImage'>
+				<Image src={image ? image[0].fileUrl : '/logo-rect.svg'} alt="gate's image" width={200} height={200} />
+			</div>
 			<h5>{bio.title}</h5>
 			<p>{bio.description}</p>
 			<div className='inputBox'>

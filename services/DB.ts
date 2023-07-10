@@ -1,8 +1,8 @@
 import {MongoClient} from 'mongodb'
 
-const uri = 'mongodb://localhost:27017'
-const dbName = 'ragate'
-const collectionName = 'gates'
-const client = new MongoClient(uri)
+const uri = process.env.MONGO_URI
+const dbName = process.env.MONGO_DB_NAME
+const collectionName = process.env.MONGO_COLLECTION_NAME
+const client = new MongoClient(uri!)
 
 export {dbName, collectionName, client}
