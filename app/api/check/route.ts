@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 	try {
 		await client.connect()
 		const db = client.db(dbName)
-		const collection = db.collection(collectionName)
+		const collection = db.collection(collectionName!)
 
 		const gate = await collection.findOne({_id: new ObjectId(_id), 'codes.value': code})
 

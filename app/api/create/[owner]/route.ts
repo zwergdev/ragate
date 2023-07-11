@@ -10,7 +10,7 @@ export async function GET(req: Request, {params}: {params: {owner: string}}) {
 	try {
 		await client.connect()
 		const db = client.db(dbName)
-		const collection = db.collection(collectionName)
+		const collection = db.collection(collectionName!)
 		response = await collection.insertOne(gateTemplate(owner))
 		response = !!response.acknowledged
 	} finally {

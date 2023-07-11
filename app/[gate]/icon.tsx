@@ -1,5 +1,6 @@
 import {ImageResponse} from 'next/server'
 import {getPublicGate} from '@/services/getGates'
+import defaultIcon from '@/public/icon.png'
 
 export const runtime = 'edge'
 
@@ -16,7 +17,13 @@ export default async function Icon({params}: {params: {gate: string}}) {
 	return new ImageResponse(
 		(
 			<>
-				<img src={gate.image[0].fileUrl} alt='icon' width={64} height={64} style={{borderRadius: '12px'}} />
+				<img
+					src={gate.image ? gate.image[0].fileUrl : defaultIcon}
+					alt='icon'
+					width={64}
+					height={64}
+					style={{borderRadius: '12px'}}
+				/>
 			</>
 		),
 		{

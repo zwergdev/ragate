@@ -9,7 +9,7 @@ export async function POST(req: Request) {
 	try {
 		await client.connect()
 		const db = client.db(dbName)
-		const collection = db.collection(collectionName)
+		const collection = db.collection(collectionName!)
 		response = await collection.updateOne({_id: new ObjectId(_id)}, {$push: {form: form}})
 		response = !!response
 	} finally {

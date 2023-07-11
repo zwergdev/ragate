@@ -9,7 +9,7 @@ export async function GET(req: Request, {params}: {params: {id: string}}) {
 	try {
 		await client.connect()
 		const db = client.db(dbName)
-		const collection = db.collection(collectionName)
+		const collection = db.collection(collectionName!)
 		response = await collection
 			.aggregate([
 				{

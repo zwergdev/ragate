@@ -5,12 +5,13 @@ export const runtime = 'edge'
 export const alt = 'Project preview'
 export const contentType = 'image/png'
 
-const font = fetch(new URL('public/Poppins-Bold.ttf', import.meta.url)).then(res => res.arrayBuffer())
-
+const getPoppinsBold = async () => {
+	const response = await fetch(new URL('public/Poppins-Bold.ttf', import.meta.url))
+	return await response.arrayBuffer()
+}
 export default async function Image({params}: {params: {gate: string}}) {
 	const paraGate = params.gate
 	const gate = await getPublicGate(paraGate)
-	const fontData = await font
 	return new ImageResponse(
 		(
 			<div
@@ -55,7 +56,7 @@ export default async function Image({params}: {params: {gate: string}}) {
 			fonts: [
 				{
 					name: 'Poppins',
-					data: fontData,
+					data: await getPoppinsBold(),
 					style: 'normal'
 				}
 			]
