@@ -4,6 +4,7 @@ import {toast} from 'react-toastify'
 import {Status} from '@/app/[gate]/components/PublicGate'
 import {sendForm} from '@/services/getGates'
 import {ObjectId} from 'mongodb'
+import {fetchingToast} from '@/services/toast'
 
 type FormState = Record<string, string>
 type Props = {
@@ -14,6 +15,7 @@ type Props = {
 }
 
 export default function FormPage({values, submitPlaceholder, setStatus, _id}: Props) {
+	const [sending, setSending] = useState(false)
 	const [form, setForm] = useState<FormState>(
 		values.reduce<FormState>((acc, curr) => {
 			const key = curr.value.replace(/\s/g, '')
@@ -39,13 +41,17 @@ export default function FormPage({values, submitPlaceholder, setStatus, _id}: Pr
 	const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 		if (validateForm()) {
+			setSending(true)
+			const promiseToast = toast.loading('Sending the form 🧐')
 			const response = await sendForm({_id, form})
-			console.log(response)
 			if (response) {
+				fetchingToast({promiseToast, text: 'Form sent 👌', type: 'success'})
 				setStatus(Status.FORM_SENT)
 			} else {
+				fetchingToast({promiseToast, text: 'Error! 🤯', type: 'error'})
 				toast.error('Error sending the form')
 			}
+			setSending(false)
 		} else {
 			toast.error('Empty')
 		}
@@ -61,7 +67,7 @@ export default function FormPage({values, submitPlaceholder, setStatus, _id}: Pr
 					<input id={key} value={form[key]} className='button' onChange={e => handleInputChange(e, key)} />
 				</div>
 			))}
-			<button type='submit' className='button submitButton'>
+			<button disabled={sending} type='submit' className='button submitButton'>
 				{submitPlaceholder}
 			</button>
 		</form>

@@ -17,7 +17,7 @@ export default function ExtraEdit() {
 		clipboardCopy(`${SITE_URL}/${_id}`).then(() => toast.success('Link copied'))
 	}
 	const deleteMyGate = async () => {
-		const promiseToast = toast.loading('Creating the gate 🧐')
+		const promiseToast = toast.loading('Deleting the gate 🧐')
 		const {deletedCount} = await deleteGate(_id)
 		if (deletedCount > 0) {
 			fetchingToast({promiseToast, text: 'Deleted 👌', type: 'success'})

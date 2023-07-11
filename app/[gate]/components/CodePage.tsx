@@ -15,6 +15,7 @@ type Props = {
 }
 
 export default function CodePage({bio, setStatus, _id, image}: Props) {
+	const [validating, setValidating] = useState(false)
 	const [code, setCode] = useState<string>('')
 	const [attempts, setAttempts] = useState(5)
 
@@ -22,6 +23,7 @@ export default function CodePage({bio, setStatus, _id, image}: Props) {
 		e.preventDefault()
 		if (code) {
 			if (attempts > 0) {
+				setValidating(true)
 				setAttempts(attempts - 1)
 				const promiseToast = toast.loading('Checking your code 🧐')
 				const response = await checkCode({_id, code})
@@ -31,6 +33,7 @@ export default function CodePage({bio, setStatus, _id, image}: Props) {
 				} else {
 					fetchingToast({promiseToast, text: 'Incorrect code 🤯', type: 'error'})
 				}
+				setValidating(false)
 			} else {
 				toast.error('Exceeded the maximum number of attempts.')
 			}
@@ -59,7 +62,7 @@ export default function CodePage({bio, setStatus, _id, image}: Props) {
 					value={code}
 				/>
 			</div>
-			<button className='button submitButton' type='submit'>
+			<button disabled={validating} className='button submitButton' type='submit'>
 				{bio.submitButton}
 			</button>
 		</form>

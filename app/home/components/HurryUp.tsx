@@ -5,11 +5,14 @@ import {toast} from 'react-toastify'
 import {fetchingToast} from '@/services/toast'
 import {useAccount} from 'wagmi'
 import {useWeb3Modal} from '@web3modal/react'
+import {useState} from 'react'
 
 export default function HurryUp({setMyGates}: {setMyGates: (gates: Gate[]) => void}) {
 	const {address, isConnected} = useAccount()
 	const {open} = useWeb3Modal()
+	const [creating, setCreating] = useState(false)
 	const handleCreateGate = async () => {
+		setCreating(true)
 		const promiseToast = toast.loading('Creating the gate 🧐')
 		if (await createGate(address!)) {
 			const gates = await getMyGates(address!)
@@ -18,6 +21,7 @@ export default function HurryUp({setMyGates}: {setMyGates: (gates: Gate[]) => vo
 		} else {
 			fetchingToast({promiseToast, text: 'Error! 🤯', type: 'error'})
 		}
+		setCreating(false)
 	}
 
 	return (
@@ -26,7 +30,7 @@ export default function HurryUp({setMyGates}: {setMyGates: (gates: Gate[]) => vo
 			{address && isConnected ? (
 				<>
 					<p>Hurry up and open the gates, we're waiting!</p>
-					<button className='button' onClick={handleCreateGate}>
+					<button disabled={creating} className='button' onClick={handleCreateGate}>
 						Create RaGate
 					</button>
 				</>

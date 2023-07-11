@@ -1,7 +1,8 @@
 import {ObjectId} from 'mongodb'
 import {Gate} from '@/app/api/edit/gates'
 
-export const SITE_URL = 'http://localhost:3000'
+// export const SITE_URL = 'http://localhost:3000'
+export const SITE_URL = 'https://ragate.vercel.app'
 
 export const getPublicGate = async (id: ObjectId | string) => {
 	const response = await fetch(`${SITE_URL}/api/edit/${id}`, {cache: 'no-store'})
@@ -87,7 +88,7 @@ export const deleteGate = async (id: ObjectId | undefined) => {
 		cache: 'no-store'
 	})
 	if (!response.ok) {
-		throw new Error('Unable to save current gate.')
+		throw new Error('Unable to delete current gate.')
 	}
 
 	return response.json()
@@ -98,7 +99,7 @@ export const downloadApplicants = async (id: ObjectId | undefined) => {
 		cache: 'no-store'
 	})
 	if (!response.ok) {
-		throw new Error('Unable to save current gate.')
+		throw new Error('Unable to download applicants.')
 	}
 
 	return response.json()
