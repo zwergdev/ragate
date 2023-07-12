@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 	title: 'RaGate | Web3-Based Forms',
 	description:
 		'Effortlessly determine your audience with the easy-to-use tool, providing password-protected form entry.',
-	themeColor: 'white',
+	themeColor: '#151515',
 	openGraph: {
 		title: 'RaGate | Web3-Based Forms',
 		description:

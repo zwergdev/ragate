@@ -12,7 +12,7 @@ export default function () {
 				<header>
 					<nav>
 						<Link href='/' className='logoBox'>
-							<Image src='/logo.svg' alt='logo' width={40} height={40} />
+							<Image priority src='/logo.svg' alt='logo' width={40} height={40} />
 							<span>RaGate</span>
 						</Link>
 						<div className='buttonsBox'>
